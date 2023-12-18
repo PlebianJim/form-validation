@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Odin Project - Form Validation</title>
+</head>
+
+<body>
+    <section class="introduction sections">
+        <h2>Introduction</h2>
+        <p>Validations allow us to set specific rules and limitations on what user are able to enter as data into
+            specific areas. When something is entered that is not allowed, a message is shown to the user that provides
+            information on what exactly they have entered incorrectly and how to fix it</p>
+        <p>Validations ensure that correct data is passed to the backend in the manner in which that data is required.
+            It also makes sure that the forms are iodiot-proof for the user and as simple to use as possible</p>
+    </section>
+
+    <section class="required-validation sections">
+        <h2>Required Validations</h2>
+        <p>It is often neccassary to ensure that specific fields or sections of forms have been filled in before the
+            form is submitted. For example, email, username or password in a login form</p>
+        <p>To make a field required, we use the "required" attribute on the form element</p>
+        <p>Best practice suggests marking each "required" form section with an asterix or other notable mark</p>
+        <form action="https://httpbin.org/post" method="post"
+            style="border: 1px solid black; padding: 5px; width: fit-content;">
+            <div>
+                <label for="user_email">*Email</label>
+                <input type="email" id="user_email" name="user_email" required>
+            </div>
+            <br>
+            <div>
+                <label for="user_pass">*Password</label>
+                <input type="password" id="user_pass" name="user_pass" required>
+            </div>
+            <div>
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </section>
+
+    <section class="text-length-validation sections">
+        <h2>Text Length Validations</h2>
+        <p>Sometimes, the users will be restricted to a number of characters within the input of the form. This could be
+            for a variety of reasons but one example would be Twitter/X with it's 140 character limit. Other uses would
+            be to have a minimum or maximum character limit for passwords or usernames (longer usernames or password
+            ensure greater security for example)</p>
+        <h3>Minimum Length Validations</h3>
+        <p>To provide a minimum length validation, we add the "minlength" attribute to the form control widget. Using an
+            integer value will enforce a minimum character length</p>
+        <form action="https://httpbin.org/post" method="post"
+            style="border: 1px solid black; padding: 5px; width: fit-content;">
+            <div>
+                <textarea name="min-length" id="min-length" cols="30" rows="3" minlength="10"
+                    placeholder="You must type more than 10 characters..."></textarea>
+            </div>
+            <div>
+                <button type="submit">Tweet</button>
+            </div>
+        </form>
+        <h3>Maximum Length Validation</h3>
+        <p>Similarly to requiring a minimum, length, we may need to restrict users to a mximum character length. In this
+            circumstance, you would use the "maxlength" attribute with the form control</p>
+        <form action="https://httpbin.org/post" method="post"
+            style="border: 1px solid black; padding: 5px; width: fit-content;">
+            <div>
+                <textarea name="max-length" id="max_length" cols="30" rows="3" maxlength="50"
+                    placeholder="You must not type more than 50 characters..."></textarea>
+            </div>
+            <div>
+                <button type="submit">Tweet</button>
+            </div>
+        </form>
+        <h3>Combining Validations</h3>
+        <p>You can apply as many validations as you like to a form control. With the tweet examples above, we can add a
+            minimum and maximum length by combining the two attributes on the form control</p>
+        <form action="https://httpbin.org/post" method="post"
+            style="border: 1px solid black; padding: 5px; width: fit-content;">
+            <div>
+                <textarea name="combined-validations" id="combined-validations" cols="30" rows="3" minlength="10"
+                    maxlength="50" placeholder="You must type more than 10 and less than 50 characters..."></textarea>
+            </div>
+            <div>
+                <button type="submit">Tweet</button>
+            </div>
+        </form>
+    </section>
+
+    <section class="number-range-validation sections">
+        <h2>Number Range Validations</h2>
+        <p>Just the same as text-based length validation, sometimes we need to control the range of numbers that a user
+            can enter into a number based form</p>
+        <p>We can use the "min" and "max" attributes again to set the lower and upper bonds of a form input</p>
+        <p>The "min" and "max" attributes only work with number based form controls such as number, dates and time
+            inputs. The full list is available at <a
+                href="https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/max#syntax">this MDN page</a></p>
+        <p>Example uses for this type of validation would be a maximum or minimum order amount on a product order from
+            or the number of passengers on a flight booking form</p>
+        <h3>Min Validation</h3>
+        <p>To add a minimum value validation, provide the form control a "min" attribute that uses an integer value
+            which specifies the minimum number that form control will accept</p>
+        <form action="https://httpbin.org/post" method="post"
+            style="border: 1px solid black; padding: 5px; width: fit-content;">
+            <div>
+                <label for="quantity">Quantity (minimum order of 2)</label>
+            </div>
+            <div>
+                <input type="number" id="quantity" name="quantity" min="2" value="0">
+            </div>
+            <div>
+                <button type="submit">Order</button>
+            </div>
+        </form>
+        <h3>Max Validation</h3>
+        <p>To add a maximum validation, we provide the form control with an attribute of "max". This functions the same
+            as the "min" value. An integer value is required to provide a maximum allowed amount. The "max" attribute is
+            added to the form control to achieve this</p>
+        <form action="https://httpbin.org/post" method="post"
+            style="border: 1px solid black; padding: 5px; width: fit-content;">
+            <div>
+                <label for="passengers">Passengers (maximum order of 10)</label>
+            </div>
+            <div>
+                <input type="number" id="passengers" name="passengers" max="10" value="1">
+            </div>
+            <div>
+                <button type="submit">Book Tickets</button>
+            </div>
+        </form>
+    </section>
+
+    <section class="pattern-validation sections">
+        <h2>Pattern Validations</h2>
+        <p>To ensure that users enter certain types of information are entered correctly (such as postcodes or credit
+            card number), we need to use regular expressions combined with the "pattern" attribute</p>
+        <p>In the following example, there is a regular expression as a the "pattern" value that validates a UK based
+            postcode. It also includes a "placeholder" attribute to show the user the required pattern for their input
+        </p>
+        <form action="https://httpbin.org/post" method="post"
+            style="border: 1px solid black; padding: 5px; width: fit-content;">
+            <div>
+                <label for="post_code">* Post Code: </label>
+            </div>
+            <div>
+                <input type="text" id="post_code" name="post_code"
+                    pattern="^[A-Z]{1,2}[0-9R][0-9A-Z]? [0-9][ABD-HJLNP-UW-Z]{2}$" placeholder="AB11 1AB" required>
+            </div>
+            <div>
+                <button type="submit">Search Postcode</button>
+            </div>
+        </form>
+        <p>Certain input elements alreayd validate the input data for specific patterns. The "email" input for example
+            checks for an @ symbol and the "website" attribute ensures that an entered URL starts with a protocol (http
+            or https)</p>
+        <form action="https://httpbin.org/post" method="post">
+            <div>
+                <label for="user-email">* Email: </label>
+            </div>
+            <div>
+                <input type="email" id="user-email" name="user-email" placeholder="user@domain.com" required>
+            </div>
+            <div>
+                <label for="user-site">* Website: </label>
+            </div>
+            <div>
+                <input type="url" id="user-site" name="user-site" placeholder="https://www.example.com" required>
+            </div>
+            <div>
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </section>
+
+    <section class="styling-validation sections">
+        <h2>Styling Validations</h2>
+        <p>You can target for controls that have padded or failed validation using the :valid and :invalid pseudo-class</p>
+        <form action="https://httpbin.org/post" method="post">
+            <div>
+                <label for="email">* Email: </label>
+            </div>
+            <div>
+                <input type="email" id="email" name="email" placeholder="user@domain.com" required>
+            </div>
+            <div>
+                <label for="webssite">* Website:</label>
+            </div>
+            <div>
+                <input type="url" id="website" name="website" placeholder="https://www.example.com"required>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+
+    <section class="conclusion sections">
+
+    </section>
+</body>
+
+</html>

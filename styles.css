@@ -1,0 +1,23 @@
+.sections {
+    border: 1px dotted darkblue;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+input {
+    border: 2px solid #000;
+    margin-bottom: 15px;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+input:invalid:not(:blank) {
+    border-color: red;
+}
+
+.input:valid:not(:blank) {
+    border-color: green;
+}
